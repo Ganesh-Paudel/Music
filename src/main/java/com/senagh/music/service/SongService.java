@@ -4,6 +4,7 @@ import com.senagh.music.Entity.Song;
 import com.senagh.music.Repository.SongRepository;
 import com.senagh.music.dto.CreateSongRequest;
 import com.senagh.music.dto.SongResponse;
+import com.senagh.music.exception.SongNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,6 +47,16 @@ public class SongService {
                 savedSong.getId(),
                 savedSong.getTitle(),
                 savedSong.getDurationSeconds()
+        );
+    }
+
+    public SongResponse getSongById(Long id){
+        Song song = songRepository.findById(id).orElseThrow(() -> new SongNotFoundException(id));
+
+        return new SongResponse(
+                song.getId(),
+                song.getTitle(),
+                song.getDurationSeconds()
         );
     }
 }

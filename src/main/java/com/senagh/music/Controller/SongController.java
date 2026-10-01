@@ -27,6 +27,11 @@ public class SongController {
         return songService.getAllSongs();
     }
 
+    @GetMapping("/{id}")
+    public SongResponse getSongById( @PathVariable("id") Long id){
+        return songService.getSongById(id);
+    }
+
     @PostMapping
     public ResponseEntity<SongResponse> createSong(@Valid @RequestBody CreateSongRequest request){
         SongResponse response = songService.createSong(request);
