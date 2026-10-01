@@ -2,6 +2,7 @@ package com.senagh.music.service;
 
 import com.senagh.music.Entity.Song;
 import com.senagh.music.Repository.SongRepository;
+import com.senagh.music.dto.CreateSongRequest;
 import com.senagh.music.dto.SongResponse;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,20 @@ public class SongService {
             responses.add(response);
         }
         return responses;
+    }
+
+    public SongResponse createSong(CreateSongRequest request){
+        Song song = new Song(
+                request.title().strip(),
+                request.durationseconds()
+        );
+
+        Song savedSong = songRepository.save(song);
+
+        return new SongResponse(
+                savedSong.getId(),
+                savedSong.getTitle(),
+                savedSong.getDurationSeconds()
+        );
     }
 }
