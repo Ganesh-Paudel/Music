@@ -1,4 +1,8 @@
 package com.senagh.music.dto;
 
-public class SongResponse {
+public record SongResponse (
+    Long id,
+    String title,
+    Integer durationSeconds
+){
 }
