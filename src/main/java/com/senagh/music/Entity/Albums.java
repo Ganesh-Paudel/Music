@@ -28,4 +28,8 @@ public class Albums {
     @OneToMany(mappedBy = "album")
     private List<Song> songs = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "artist_id")
+    private Artists artists;
+
 }

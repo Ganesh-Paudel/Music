@@ -20,4 +20,14 @@ public class Artists {
 
     @Column(name="image_url")
     private String imageUrl;
+
+    protected Artists(){
+
+    }
+
+    public Artists(String name, String bio, String imageUrl){
+        this.name = name;
+        this.bio = bio;
+        this.imageUrl = imageUrl;
+    }
 }
