@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/** Exposes artist creation and retrieval, validating incoming request bodies. */
 @RestController
 @RequestMapping("/api/artists")
 public class ArtistsController {

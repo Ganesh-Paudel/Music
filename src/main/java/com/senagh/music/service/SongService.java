@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Coordinates song persistence and conversion to API responses. */
 @Service
 public class SongService {
 
@@ -22,6 +23,11 @@ public class SongService {
         this.songMapper = songMapper;
     }
 
+    /**
+     * Returns all records without pagination or a guaranteed ordering.
+     *
+     * @return responses, or an empty list when no records exist
+     */
     public List<SongResponse> getAllSongs(){
         List<Song> songs = songRepository.findAll();
 
@@ -34,6 +40,12 @@ public class SongService {
         return responses;
     }
 
+    /**
+     * Saves a new song from an already validated request.
+     *
+     * @param request non-null payload satisfying its Bean Validation constraints
+     * @return saved metadata including the generated database ID
+     */
     public SongResponse createSong(CreateSongRequest request){
 
         Song savedSong = songRepository.save(songMapper.toEntity(request));
@@ -41,6 +53,13 @@ public class SongService {
         return songMapper.toResponse(savedSong);
     }
 
+    /**
+     * Retrieves a song by its database identifier.
+     *
+     * @param id non-null database identifier
+     * @return the matching song response
+     * @throws SongNotFoundException if no record has the supplied ID
+     */
     public SongResponse getSongById(Long id){
         Song song = songRepository.findById(id).orElseThrow(() -> new SongNotFoundException(id));
 

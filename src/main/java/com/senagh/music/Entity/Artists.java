@@ -3,6 +3,7 @@ package com.senagh.music.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+/** Artist metadata; biography and image URL may be absent. */
 @Entity
 @Table(name = "artists")
 @Getter

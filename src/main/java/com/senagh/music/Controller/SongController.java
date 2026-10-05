@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/** Exposes song metadata creation and retrieval, validating incoming request bodies. */
 @RestController
 @RequestMapping("/api/songs")
 public class SongController {

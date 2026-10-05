@@ -280,6 +280,15 @@ When a feature lands, add it to **Progress so far**, document its endpoints and 
 
 ## Contributing
 
+### Comment conventions
+
+- Use Javadoc (`/** ... */`) for class responsibilities and method contracts that need explanation. Document meaningful parameters, return values, nullability, and expected exceptions.
+- Use short inline comments (`// ...`) to explain intent or non-obvious details, such as which entity owns a relationship's foreign key.
+- Avoid comments that merely repeat a method name, assignment, annotation, or getter. Simple constructors and inherited repository methods do not need boilerplate documentation.
+- Keep comments accurate when behavior changes. Describe current behavior rather than planned features, and keep setup instructions and the roadmap in this README.
+
+### Change workflow
+
 For each change:
 
 1. Keep HTTP handling in controllers, application operations in services, and object conversion in mappers.

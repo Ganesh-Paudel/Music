@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/** Prints persisted song metadata at startup as a development diagnostic. */
 @Configuration
 public class RepoCheck {
 

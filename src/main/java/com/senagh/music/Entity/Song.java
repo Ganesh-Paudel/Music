@@ -3,6 +3,7 @@ package com.senagh.music.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+/** Persisted song metadata, with an optional album association. */
 @Entity
 @Table(name = "songs")
 @Getter
@@ -18,6 +19,7 @@ public class Song {
     @Column(name="duration_seconds", nullable = false)
     private Integer durationSeconds;
 
+    // This side owns songs.album_id; assigning an album determines the stored foreign key.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id")
     private Albums album;

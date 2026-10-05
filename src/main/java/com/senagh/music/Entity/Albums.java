@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Album metadata and its artist and song associations. */
 @Entity
 @Table(name="albums")
 @Getter
@@ -25,6 +26,7 @@ public class Albums {
     @Column(name="cover_url")
     private String coverUrl;
 
+    // Song.album owns the foreign key; changing only this list does not update it.
     @OneToMany(mappedBy = "album")
     private List<Song> songs = new ArrayList<>();
 

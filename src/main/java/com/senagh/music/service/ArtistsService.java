@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Coordinates artist persistence and conversion to API responses. */
 @Service
 public class ArtistsService {
 
@@ -22,6 +23,11 @@ public class ArtistsService {
         this.artistMapper = artistMapper;
     }
 
+    /**
+     * Returns all records without pagination or a guaranteed ordering.
+     *
+     * @return responses, or an empty list when no records exist
+     */
     public List<ArtistResponse> getAllArtists(){
         List<Artists> artists = artistsRepository.findAll();
 
@@ -35,12 +41,25 @@ public class ArtistsService {
         return responses;
     }
 
+    /**
+     * Retrieves a artist by its database identifier.
+     *
+     * @param id non-null database identifier
+     * @return the matching artist response
+     * @throws ArtistNotFoundException if no record has the supplied ID
+     */
     public ArtistResponse getArtistById(Long id){
         Artists artist = artistsRepository.findById(id)
                 .orElseThrow(() -> new ArtistNotFoundException(id));
         return artistMapper.toResponse(artist);
     }
 
+    /**
+     * Saves a new artist from an already validated request.
+     *
+     * @param request non-null payload satisfying its Bean Validation constraints
+     * @return saved metadata including the generated database ID
+     */
     public ArtistResponse createArtist(CreateArtistRequest request){
         Artists newArtist = artistsRepository.save(artistMapper.toEntity(request));
         return  artistMapper.toResponse(newArtist);
