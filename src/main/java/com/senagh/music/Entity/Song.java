@@ -18,6 +18,10 @@ public class Song {
     @Column(name="duration_seconds", nullable = false)
     private Integer durationSeconds;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "album_id")
+    private Albums album;
+
     protected Song(){
 
     }
