@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: music-postgres
+    environment:
+      POSTGRES_DB: music
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - "music_pgdata:/var/lib/postgresql"
+
+
+volumes:
+  music_pgdata:

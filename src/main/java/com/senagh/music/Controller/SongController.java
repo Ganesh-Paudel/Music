@@ -24,6 +24,7 @@ public class SongController {
 
     @GetMapping
     public List<SongResponse> getAllSongs(){
+        System.out.println("getAllSongs");
         return songService.getAllSongs();
     }
 
@@ -35,7 +36,7 @@ public class SongController {
     @PostMapping
     public ResponseEntity<SongResponse> createSong(@Valid @RequestBody CreateSongRequest request){
         SongResponse response = songService.createSong(request);
-
+        System.out.println("post entity");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
