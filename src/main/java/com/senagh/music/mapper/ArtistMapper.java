@@ -2,6 +2,7 @@ package com.senagh.music.mapper;
 
 import com.senagh.music.Entity.Artists;
 import com.senagh.music.dto.ArtistResponse;
+import com.senagh.music.dto.CreateArtistRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +17,7 @@ public class ArtistMapper {
         );
     }
 
-    public Artists toEntity(ArtistResponse artistRequest){
+    public Artists toEntity(CreateArtistRequest artistRequest){
         return new Artists(
                artistRequest.name().strip(),
                artistRequest.bio() == null ? null : artistRequest.bio().strip(),
